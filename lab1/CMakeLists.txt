@@ -9,7 +9,7 @@ project(lab1)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
   rospy
-  std_msgs
+#  std_msgs
   geometry_msgs
 )
 
