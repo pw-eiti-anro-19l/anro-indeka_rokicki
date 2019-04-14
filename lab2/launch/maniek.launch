@@ -1,6 +1,6 @@
 <launch>
 
-  <arg name="model" default="$(find lab2)/urdf/stat.urdf"/>
+  <arg name="model" default="$(find lab2)/urdf/static.urdf"/>
   <arg name="gui" default="true" />
   <arg name="rvizconfig" default="$(find lab2)/rviz/urdf.rviz" />
 

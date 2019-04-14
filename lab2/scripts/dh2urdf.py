@@ -32,4 +32,5 @@ if __name__ == '__main__':
             file.write("  j_rpy: {} {} {}\n".format(*rpy))
             file.write("  l_xyz: {} {} {}\n".format(xyz[0]/2, xyz[1]/2, xyz[2]/2))
             file.write("  l_rpy: {} {} {}\n".format(*rpy))
+            file.write("  l_len: {}\n".format(a))
 file.write("  l_len: {}\n".format(a))
