@@ -10,6 +10,10 @@
         <color rgba="1 1 1 1"/>
     </material>
 
+    <material name="black"> 
+        <color rgba="0 0 0 1"/>
+    </material>
+
     <link name="base_link">
         <visual>
             <geometry>
@@ -23,7 +27,7 @@
     <link name="link_1">
         <visual>
             <geometry>
-                <box size="${props['i2']['l_len']} ${l_width} ${l_width}"/>
+                <box size="${l_width} 1.0 ${l_width}"/>
             </geometry>
             <origin xyz="${props['i2']['l_xyz']}" rpy="${props['i2']['l_rpy']}"/>
             <material name="blue"/>
@@ -33,7 +37,7 @@
     <link name="link_2">
         <visual>
             <geometry>
-                <box size="${props['i3']['l_len']} ${l_width} ${l_width}"/>
+                 <box size="${l_width} 2.0 ${l_width}"/>
             </geometry>
             <origin xyz="${props['i3']['l_xyz']}" rpy="${props['i3']['l_rpy']}"/>
             <material name="blue"/>
@@ -46,7 +50,7 @@
                 <mesh filename="package://lab2/FuturamaRifle.stl" scale="0.001 0.001 0.002"/>
             </geometry>
             <origin xyz="0 0 0" rpy="3.14 -1.57075 0"/>
-            <material name="blue"/>
+            <material name="black"/>
         </visual>
     </link>
 

@@ -27,10 +27,10 @@ if __name__ == '__main__':
             rpy = euler_from_matrix(matrix)
             xyz = translation_from_matrix(matrix)
 
+
             file.write(key + ":\n")
             file.write("  j_xyz: {} {} {}\n".format(*xyz))
             file.write("  j_rpy: {} {} {}\n".format(*rpy))
             file.write("  l_xyz: {} {} {}\n".format(xyz[0]/2, xyz[1]/2, xyz[2]/2))
             file.write("  l_rpy: {} {} {}\n".format(*rpy))
             file.write("  l_len: {}\n".format(a))
-file.write("  l_len: {}\n".format(a))
