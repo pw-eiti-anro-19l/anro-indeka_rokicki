@@ -29,8 +29,8 @@ if __name__ == '__main__':
 
 
             file.write(key + ":\n")
-            file.write("  j_xyz: {} {} {}\n".format(*xyz))
-            file.write("  j_rpy: {} {} {}\n".format(*rpy))
+            file.write("  j_xyz: {} {} {}\n".format(xyz[0],xyz[1],xyz[2]))
+            file.write("  j_rpy: {} {} {}\n".format(rpy[0],-rpy[2],rpy[1]))
             file.write("  l_xyz: {} {} {}\n".format(xyz[0]/2, xyz[1]/2, xyz[2]/2))
-            file.write("  l_rpy: {} {} {}\n".format(*rpy))
-            file.write("  l_len: {}\n".format(a))
+            file.write("  l_rpy: {} {} {}\n".format(0,0,0))
+            file.write("  l_len: {}\n".format(d))
