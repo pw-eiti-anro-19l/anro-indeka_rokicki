@@ -1,8 +1,9 @@
 <?xml version="1.0"?>
 <robot name="example_robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
-    <xacro:property name="props" value="${load_yaml('../urdf.yaml')}"/>
+    <xacro:property name="props" value="${load_yaml('../urdf2.yaml')}"/>
     <xacro:property name="l_width" value="0.02"/>
-	 <material name="red">
+    
+    <material name="red">
         <color rgba="1 0 0 1"/>
     </material>
 
@@ -27,9 +28,9 @@
     <link name="link_1">
         <visual>
             <geometry>
-                <box size=" ${l_width}  ${l_width} ${props['i2']['l_len']}"/>
+                <box size=" ${l_width}  ${l_width} ${props['i1']['l_len']}"/>
             </geometry>
-            <origin xyz="${props['i2']['l_xyz']}" rpy="${props['i2']['l_rpy']}"/>
+            <origin xyz="${props['i1']['l_xyz']}" rpy="${props['i1']['l_rpy']}"/>
             <material name="red"/>
         </visual>
     </link>
@@ -37,9 +38,9 @@
     <link name="link_2">
         <visual>
             <geometry>
-                <box size=" ${l_width}  ${l_width} ${props['i3']['l_len']}"/>
+                <box size=" ${l_width}  ${l_width} ${props['i2']['l_len']}"/>
             </geometry>
-            <origin xyz="${props['i3']['l_xyz']}" rpy="${props['i3']['l_rpy']}"/>
+            <origin xyz="${props['i2']['l_xyz']}" rpy="${props['i2']['l_rpy']}"/>
             <material name="red"/>
         </visual>
     </link>
@@ -49,14 +50,14 @@
             <geometry>
                 <mesh filename="package://lab2/FuturamaRifle.stl" scale="0.001 0.001 0.002"/>
             </geometry>
-            <origin xyz="0 0 0" rpy="3.14 -1.57075 0"/>
+            <origin xyz="0 0 0" rpy="-1.57075 0 3.14159"/>
             <material name="black"/>
         </visual>
 	<visual>
             <geometry>
-                <box size="${l_width} ${l_width} 2"/>
+                <box size="${l_width} ${l_width} ${props['i3']['l_len']}"/>
             </geometry>
-            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <origin xyz="${props['i3']['l_xyz']}" rpy="${props['i3']['l_rpy']}"/>
             <material name="black"/>
         </visual>
     </link>

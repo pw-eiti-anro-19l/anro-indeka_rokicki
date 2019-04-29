@@ -1,7 +1,5 @@
 <?xml version="1.0"?>
-<robot name="example_robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
-    <xacro:property name="props" value="${load_yaml('../urdf2.yaml')}"/>
-    <xacro:property name="l_width" value="0.02"/>
+<robot name="example_robot">
     
     <material name="red">
         <color rgba="1 0 0 1"/>
@@ -20,7 +18,7 @@
             <geometry>
                 <cylinder length="0.04" radius="0.05"/>
             </geometry>
-            <origin xyz="0 0 -0.02"/>
+            <origin xyz="0 0 0"/>
             <material name="white"/>
         </visual>
     </link>
@@ -28,19 +26,19 @@
     <link name="link_1">
         <visual>
             <geometry>
-                <box size=" ${l_width}  ${l_width} ${props['i1']['l_len']}"/>
+                <box size="0.02 0.02 1"/>
             </geometry>
-            <origin xyz="${props['i1']['l_xyz']}" rpy="${props['i1']['l_rpy']}"/>
-            <material name="red"/>
+            <origin xyz="0 0 -0.5" rpy="0 0 0"/>
+            <material name="white"/>
         </visual>
     </link>
 
     <link name="link_2">
         <visual>
             <geometry>
-                <box size=" ${l_width}  ${l_width} ${props['i2']['l_len']}"/>
+                <box size="0.02 0.02 1"/>
             </geometry>
-            <origin xyz="${props['i2']['l_xyz']}" rpy="${props['i2']['l_rpy']}"/>
+            <origin xyz="0 0 -0.5" rpy="0 0 0"/>
             <material name="red"/>
         </visual>
     </link>
@@ -55,9 +53,9 @@
         </visual>
 	<visual>
             <geometry>
-                <box size="${l_width} ${l_width} ${props['i3']['l_len']}"/>
+                <box size="0.02 0.02 1"/>
             </geometry>
-            <origin xyz="${props['i3']['l_xyz']}" rpy="${props['i3']['l_rpy']}"/>
+            <origin xyz="0 0 -0.5" rpy="0 0 0"/>
             <material name="black"/>
         </visual>
     </link>
@@ -65,24 +63,24 @@
     <joint name="base_to_link1" type="prismatic">
         <parent link="base_link"/>
         <child link="link_1"/>
-        <origin xyz="${props['i1']['j_xyz']}" rpy="${props['i1']['j_rpy']}"/>
+        <origin xyz="0 0 1" rpy="0 0 0"/>
         <axis xyz="0 0 1"/>
-        <limit effort="1000.0" lower="-${props['i1']['l_len']}" upper="0" velocity="0.5"/>
+        <limit effort="1000.0" lower="-1" upper="0" velocity="0.5"/>
     </joint>
 
     <joint name="link1_to_link2" type="prismatic">
         <parent link="link_1"/>
         <child link="link_2"/>
-        <origin xyz="${props['i2']['j_xyz']}" rpy="${props['i2']['j_rpy']}"/>
+        <origin rpy="1.57075 -1.57075 0" xyz="0 -1 0"/>
         <axis xyz="0 0 1"/>
-        <limit effort="1000.0" lower="-${props['i2']['l_len']}" upper="0" velocity="0.5"/>
+        <limit effort="1000.0" lower="-1" upper="0" velocity="0.5"/>
     </joint>
 
     <joint name="link2_to_link3" type="prismatic">
         <parent link="link_2"/>
         <child link="link_3"/>
-        <origin xyz="${props['i3']['j_xyz']}" rpy="${props['i3']['j_rpy']}"/>
-        <limit effort="1000.0" lower="-${props['i3']['l_len']}" upper="0" velocity="0.5"/>
+        <origin rpy="1.57075 -1.57075 0" xyz="0 -1 0"/>
         <axis xyz="0 0 1"/>
+        <limit effort="1000.0" lower="-1" upper="0" velocity="0.5"/>
     </joint>
 </robot>

@@ -2,10 +2,6 @@
 
 import json
 
-from tf.transformations import *
-
-xaxis, yaxis, zaxis = (1, 0, 0), (0, 1, 0), (0, 0, 1)
-
 if __name__ == '__main__':
     params = {}
     results = ''
@@ -15,22 +11,40 @@ if __name__ == '__main__':
     with open('../urdf.yaml', 'w') as file:
         for key in params.keys():
             a, d, al, th = params[key]
-            al, a, d, th = float(al), float(a), float(d), float(th)
+            a, d, al, th = float(a), float(d), float(al), float(th)
 
-            tz = translation_matrix((0, 0, d))
-            rz = rotation_matrix(th, zaxis)
-            tx = translation_matrix((a, 0, 0))
-            rx = rotation_matrix(al, xaxis)
+	    xyz=[a, 0, 0]
 
-            matrix = concatenate_matrices(tz, rz, tx, rx)
-
-            rpy = euler_from_matrix(matrix)
-            xyz = translation_from_matrix(matrix)
+	    if al!=0:
+		if al>0:
+		    xyz[1]=-d
+		    if th>0:
+			rpy=[al, -th, 0]
+		    elif th<0:
+			rpy=[al, th, 0]
+		    else:
+			rpy=[al, 0, 0]
+		else:
+		    xyz[1]=d
+		    if th>0:
+			rpy=[-al, th, 0]
+		    elif th<0:
+			rpy=[-al, -th, 0]
+		    else:
+			rpy=[-al, 0, 0]
+	    else:
+		xyz[2]=d
+		if th>0:
+		    rpy=[0, 0, th]
+		elif th<0:
+		    rpy=[0, 0, -th]
+		else:
+		    rpy=[0, 0, 0]
 
 
             file.write(key + ":\n")
             file.write("  j_xyz: {} {} {}\n".format(xyz[0],xyz[1],xyz[2]))
-            file.write("  j_rpy: {} {} {}\n".format(rpy[0],-rpy[2],rpy[1]))
-            file.write("  l_xyz: {} {} {}\n".format(xyz[0]/2, xyz[1]/2, xyz[2]/2))
+            file.write("  j_rpy: {} {} {}\n".format(rpy[0],rpy[1],rpy[2]))
+            file.write("  l_xyz: {} {} {}\n".format(0, 0, -d/2))
             file.write("  l_rpy: {} {} {}\n".format(0,0,0))
             file.write("  l_len: {}\n".format(d))
