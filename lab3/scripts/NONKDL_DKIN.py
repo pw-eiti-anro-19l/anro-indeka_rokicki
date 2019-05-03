@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import rospy
 from geometry_msgs.msg import PoseStamped #Publish Header header Pose pose
 from sensor_msgs.msg import JointState #Subscribe Header header string[] name float64[] position float64[] velocity float64[] effort
@@ -5,39 +6,29 @@ from sensor_msgs.msg import JointState #Subscribe Header header string[] name fl
 #Point float64 x float64 y float64 z
 #Quaternion float64 x float64 y float64 z float64 w
 
+#rospy.get_param("nazwa")
+
 #Sample code below
-def talker():
-    pub = rospy.Publisher('chatter', String, queue_size=10)
-    rospy.init_node('talker', anonymous=True)
-    rate = rospy.Rate(10) # 10hz
-    while not rospy.is_shutdown():
-        hello_str = "hello world %s" % rospy.get_time()
-        rospy.loginfo(hello_str)
-        pub.publish(hello_str)
-        rate.sleep()
+def my_node():
+    rospy.init_node('NONKDL_DKIN', anonymous=True)
+    global pub
+    pub = rospy.Publisher('pub_pose', PoseStamped, queue_size=10) #to who
+    rospy.Subscriber('joint_states', JointState, callback)
+    rospy.spin()
+
+def callback(data):
+    rospy.loginfo(rospy.get_caller_id() + 'I heard position %f from %s', data.position[0], data.name[0])
+    pub_msg = PoseStamped()
+    pub_msg.header.frame_id = "base_link"
+    pub_msg.pose.position.x = 1 + data.position[2]
+    pub_msg.pose.position.y = -(1 + data.position[1])
+    pub_msg.pose.position.z = 1 + data.position[0]
+    #rospy.loginfo(pub_msg)
+    pub.publish(pub_msg)
 
 if __name__ == '__main__':
     try:
-        talker()
+        my_node()
     except rospy.ROSInterruptException:
         pass
 
-def callback(data):
-    rospy.loginfo(rospy.get_caller_id() + 'I heard %s', data.data)
-
-def listener():
-
-    # In ROS, nodes are uniquely named. If two nodes with the same
-    # name are launched, the previous one is kicked off. The
-    # anonymous=True flag means that rospy will choose a unique
-    # name for our 'listener' node so that multiple listeners can
-    # run simultaneously.
-    rospy.init_node('listener', anonymous=True)
-
-    rospy.Subscriber('chatter', String, callback)
-
-    # spin() simply keeps python from exiting until this node is stopped
-    rospy.spin()
-
-if __name__ == '__main__':
-    listener()
