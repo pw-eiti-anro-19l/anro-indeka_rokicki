@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+
 import rospy
 from geometry_msgs.msg import PoseStamped #Publish Header header Pose pose
 from sensor_msgs.msg import JointState #Subscribe Header header string[] name float64[] position float64[] velocity float64[] effort
@@ -8,7 +9,6 @@ from sensor_msgs.msg import JointState #Subscribe Header header string[] name fl
 
 #rospy.get_param("nazwa")
 
-#Sample code below
 def my_node():
     rospy.init_node('NONKDL_DKIN', anonymous=True)
     global pub
