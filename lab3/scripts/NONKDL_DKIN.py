@@ -14,7 +14,7 @@ from sensor_msgs.msg import JointState #Subscribe Header header string[] name fl
 def my_node():
     rospy.init_node('NONKDL_DKIN', anonymous=True)
     global pub
-    pub = rospy.Publisher('pub_pose', PoseStamped, queue_size=10) #to who
+    pub = rospy.Publisher('pub_pose_non', PoseStamped, queue_size=10) #to who
     rospy.Subscriber('joint_states', JointState, callback)
     rospy.spin()
 

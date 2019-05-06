@@ -46,7 +46,7 @@ def callback(data):
     pub_msg = PoseStamped()
     pub_msg.header.frame_id = "base_link"
     pub_msg.pose.position.x = cartpos.p[2]
-    pub_msg.pose.position.y = -cartpos.p[1]
+    pub_msg.pose.position.y =-cartpos.p[1]
     pub_msg.pose.position.z = cartpos.p[0]
     pub.publish(pub_msg)
 
