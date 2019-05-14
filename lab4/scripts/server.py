@@ -1,17 +1,19 @@
 #!/usr/bin/env python
 
-from beginner_tutorials.srv import *
+from lab4.srv import *
 import rospy
 
-def handle_add_two_ints(req):
-    print "Returning [%s + %s = %s]"%(req.a, req.b, (req.a + req.b))
-    return AddTwoIntsResponse(req.a + req.b)
+#req.t typu Time
 
-def add_two_ints_server():
+def handle_service(req):
+    print "Returning [%s %s %s %s]"%(req.x, req.y, req.z, req.t.secs)
+    return serviceResponse(req.x, req.y, req.z, req.t)
+
+def server():
     rospy.init_node('server')
-    s = rospy.Service('add_two_ints', AddTwoInts, handle_add_two_ints)
-    print "Ready to add two ints."
+    s = rospy.Service('service', service, handle_service)
+    print "Server ready."
     rospy.spin()
 
 if __name__ == "__main__":
-    add_two_ints_server()
+    server()
