@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from lab4.srv import *
+from lab4.srv import service
 import rospy
 
 #req.t typu Time

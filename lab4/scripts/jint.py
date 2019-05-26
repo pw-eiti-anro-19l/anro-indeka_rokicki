@@ -3,7 +3,7 @@
 import rospy
 import time
 import math as m
-from lab4.srv import *
+from lab4.srv import service
 from sensor_msgs.msg import JointState #Subscribe Header header string[] name float64[] position float64[] velocity float64[] effort
 #Pose Point position Quaternion orientation
 #Point float64 x float64 y float64 z
@@ -13,11 +13,15 @@ RATE = 10
 TOP_SPEED = 1
 
 def my_node():
-    rospy.init_node('JINT', anonymous=True)
-    rospy.wait_for_service('service')
     global pub
     pub = rospy.Publisher('joint_states', JointState, queue_size=10)
-    rospy.Subscriber('service', service, callback)
+    rospy.init_node('JINT', anonymous=True)
+    rospy.wait_for_service('service')
+    #rospy.Subscriber('service', service, callback)
+    service1 = rospy.Service('service', service, callback)
+
+
+
     rospy.spin()
 
 def callback(data):
@@ -54,7 +58,7 @@ def callback(data):
 
 
 if __name__ == '__main__':
-    pos = {0, 0, 0}
+    pos = (0, 0, 0)
     try:
         my_node()
     except rospy.ROSInterruptException:
