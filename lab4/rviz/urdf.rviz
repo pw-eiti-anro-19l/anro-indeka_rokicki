@@ -4,8 +4,8 @@ Panels:
     Name: Displays
     Property Tree Widget:
       Expanded:
-        - /Pose1
-        - /Pose2
+        - /RobotModel1
+        - /RobotModel1/Status1
       Splitter Ratio: 0.5
     Tree Height: 461
   - Class: rviz/Selection
@@ -100,36 +100,6 @@ Visualization Manager:
         {}
       Update Interval: 0
       Value: true
-    - Alpha: 0.5
-      Axes Length: 1
-      Axes Radius: 0.10000000149011612
-      Class: rviz/Pose
-      Color: 255; 255; 0
-      Enabled: true
-      Head Length: 0.10000000149011612
-      Head Radius: 0.10000000149011612
-      Name: Pose
-      Shaft Length: 0.30000001192092896
-      Shaft Radius: 0.05000000074505806
-      Shape: Arrow
-      Topic: /pub_pose_non
-      Unreliable: false
-      Value: true
-    - Alpha: 0.5
-      Axes Length: 1
-      Axes Radius: 0.10000000149011612
-      Class: rviz/Pose
-      Color: 255; 25; 0
-      Enabled: true
-      Head Length: 0.20000000298023224
-      Head Radius: 0.10000000149011612
-      Name: Pose
-      Shaft Length: 0.4000000059604645
-      Shaft Radius: 0.019999999552965164
-      Shape: Arrow
-      Topic: /pub_pose
-      Unreliable: false
-      Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
@@ -191,5 +161,5 @@ Window Geometry:
   Views:
     collapsed: false
   Width: 1500
-  X: 306
-  Y: 43
+  X: 305
+  Y: 25

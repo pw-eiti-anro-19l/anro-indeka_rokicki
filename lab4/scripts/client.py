@@ -2,7 +2,7 @@
 
 import sys
 import rospy
-from lab4.srv import *
+from lab4.srv import service
 
 def client(x, y, z, t):
     rospy.wait_for_service('service')
